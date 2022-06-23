@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django_request_mapping import request_mapping
-from parkingLot.models import Parking
+from .models import Parking
 from django.http import JsonResponse
 from datetime import datetime
+
 
 @request_mapping("")
 class MyView(View):
