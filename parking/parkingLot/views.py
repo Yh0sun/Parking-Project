@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django_request_mapping import request_mapping
-from .models import Parking
+from parkingLot.models import Parking
 from django.http import JsonResponse
 from datetime import datetime
-
 
 @request_mapping("")
 class MyView(View):
@@ -48,7 +47,6 @@ class MyView(View):
             print("db 저장 성공")
         except:
             print("db 저장 실패")
-
 
         return JsonResponse({"result": 1})
 
@@ -104,6 +102,7 @@ class MyView(View):
     def handicapUpdate(self, request, pk):
         try:
             obj = Parking.objects.get(id=pk)
+            obj.handicap = "1"
             obj.state = "1"
             obj.save()
             return redirect("/check")
